@@ -2,7 +2,6 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="./vue.js"></script>
 		<title>Aprendendo Vue.JS</title>
@@ -17,21 +16,27 @@
 	</head>
 	<body>
 		<div id="app">
-			{{ mensagem }} {{ mensagem.length }}
-			<!-- <input :value="mensagem" :class="1 == 2 ? 'verde' : estilo" /> -->
-			<input :value="mensagem" :class="teste ? 'verde' : estilo" />
+			<!-- sintaxe sugar = não coloco v-on: - coloco apenas @ -->
+			<!-- <input type="text" v-on:keyup="imprimirTexto()" /> -->
+			<input type="text" @keyup="imprimirTexto()" />
+			<button @click="mensagemAlerta()">Botão</button>
 		</div>
 
 		<script>
 			const vm = new Vue({
 				el: "#app",
-				data: {
-					mensagem: "Expressão",
-					estilo: "azul",
-					teste: true,
+				data: {},
+				methods: {
+					imprimirTexto() {
+						console.log("Teste");
+					},
+					mensagemAlerta() {
+						alert("Mensagem de alerta");
+					},
 				},
-				methods: {},
 			});
+
+			console.log(vm);
 		</script>
 	</body>
 </html>

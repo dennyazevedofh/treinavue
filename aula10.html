@@ -8,30 +8,24 @@
 	</head>
 	<body>
 		<div id="app">
-			{{ somar() }}<br />
-			{{ subtrair() }}<br />
-			{{ multiplicar() }}<br />
-			{{ multi() }}<br />
-			{{ dividir() }}<br />
+			<input type="text" @keyup="imprimirTexto('Enviando parâmetro', 5)" />
+			<button @click="mensagemAlerta()">Botão</button>
 		</div>
 
 		<script>
 			const vm = new Vue({
 				el: "#app",
-				data: {},
+				data: {
+					flag: false,
+				},
 				methods: {
-					somar: function somar() {
-						return 4 + 2;
+					imprimirTexto(texto, num) {
+						console.log(texto);
+						console.log(num);
+						console.log(this.flag);
 					},
-					subtrair: function () {
-						return 4 - 2;
-					},
-					multiplicar: () => {
-						return 4 * 2;
-					},
-					multi: () => 3 * 3,
-					dividir() {
-						return 4 / 2;
+					mensagemAlerta() {
+						alert("Mensagem de alerta");
 					},
 				},
 			});
