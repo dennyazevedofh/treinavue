@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="./vue.js"></script>
+		<title>Aprendendo Vue.JS</title>
+		<style></style>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(curso, key) in cursos" v-text="key +' - '+ curso"></li>
+			</ul>
+			<hr />
+			<table border="1">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Título</th>
+						<th>Descrição</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--
+					<tr v-for="curso in cursos2">
+						<td></td>
+						<td>{{ curso }}</td>
+						<td></td>
+					</tr>
+					-->
+					<!--
+					<tr v-for="(curso, id) in cursos2">
+						<td>{{ id }}</td>
+						<td>{{ curso.titulo }}</td>
+						<td>{{ curso.descricao }}</td>
+					</tr>
+					-->
+					<!-- destructuring assignment - ES6 ou superior -->
+					<tr v-for="({titulo,descricao}, id) in cursos2">
+						<td>{{ id }}</td>
+						<td>{{ titulo }}</td>
+						<td>{{ descricao }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr />
+			<ul>
+				<!-- <li v-for="p in publicacoes">{{ p }}</li> -->
+				<!-- <li v-for="p in publicacoes">{{ p.publicacao }}</li> -->
+				<!--
+				<li
+					v-for="p in publicacoes"
+					style="border: solid 1px; margin-bottom: 10px"
+				>
+					<div>
+						{{ p.publicacao }}
+						<hr />
+						<input type="text" />
+					</div>
+				</li>
+				-->
+				<li
+					v-for="p in publicacoes"
+					style="border: solid 1px; margin-bottom: 10px"
+					:key="p.id"
+				>
+					<div>
+						{{ p.publicacao }}
+						<hr />
+						<input type="text" />
+					</div>
+				</li>
+			</ul>
+			<button @click="misturarArray()">Misturar publicações</button>
+		</div>
+		<script>
+			const vm = new Vue({
+				el: "#app",
+				data: {
+					cursos: [
+						"Laravel",
+						"Web Completo",
+						"Banco de Dados",
+						"Solid",
+						"Angular",
+					],
+					cursos2: {
+						1000: {
+							titulo: "Laravel",
+							descricao: "Domine o framework PHP mais poderoso do mundo",
+							preco: 200,
+							duracao: 40,
+						},
+						1001: {
+							titulo: "Banco de Dados",
+							descricao: "Aprenda os principais BD relacionais do mercado",
+							preco: 150,
+							duracao: 30,
+						},
+					},
+					publicacoes: [
+						{ id: 1, publicacao: "Publicações 1" },
+						{ id: 2, publicacao: "Publicações 2" },
+						{ id: 3, publicacao: "Publicações 3" },
+					],
+				},
+				methods: {
+					misturarArray() {
+						let misturado = [];
+						misturado[0] = this.publicacoes[2];
+						misturado[1] = this.publicacoes[0];
+						misturado[2] = this.publicacoes[1];
+						this.publicacoes = misturado;
+					},
+				},
+			});
+		</script>
+	</body>
+</html>

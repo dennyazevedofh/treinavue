@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="./vue.js"></script>
+		<title>Aprendendo Vue.JS</title>
+		<style></style>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<!-- <li v-for="curso in cursos">{{ curso }}</li> -->
+				<!-- <li v-for="curso in cursos" v-text="curso"></li> -->
+				<!-- <li v-for="(curso, key) in cursos">{{ key }} - {{ curso }}</li> -->
+				<!-- vamos ter um erro em função do "-", vai considertar como operador -->
+				<!-- <li v-for="(curso, key) in cursos" v-text="key - curso"></li> -->
+				<li v-for="(curso, key) in cursos" v-text="key +' - '+ curso"></li>
+			</ul>
+		</div>
+		<script>
+			const vm = new Vue({
+				el: "#app",
+				data: {
+					cursos: [
+						"Laravel",
+						"Web Completo",
+						"Banco de Dados",
+						"Solid",
+						"Angular",
+					],
+				},
+				methods: {},
+			});
+		</script>
+	</body>
+</html>
