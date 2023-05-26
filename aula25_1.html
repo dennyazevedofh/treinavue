@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="./vue.js"></script>
+		<title>Aprendendo Vue.JS</title>
+		<style></style>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="c in comentarios">{{ c.id }} - {{ c.comentario }}</li>
+			</ul>
+			<hr />
+			Id: <input type="text" id="index" /> Comentário:
+			<input type="text" id="novoComentario" />
+			<hr />
+			<button @click="adicionarElemento()">Adicionar</button>
+			<button @click="removerElemento()">Remover</button>
+			<button @click="modificarElemento()">Atualizar</button>
+		</div>
+		<script>
+			const vm = new Vue({
+				el: "#app",
+				data: {
+					comentarios: [
+						{ id: 1, comentario: "Comentário 01" },
+						{ id: 2, comentario: "Comentário 02" },
+						{ id: 3, comentario: "Comentário 03" },
+					],
+					numId: 3,
+				},
+				methods: {
+					adicionarElemento() {
+						this.numId++;
+						this.comentarios.push({
+							id: this.numId,
+							comentario: novoComentario.value,
+						});
+					},
+					removerElemento() {
+						//this.comentarios.pop();
+						let key = parseFloat(index.value) - 1;
+						this.comentarios.splice(key, 1);
+					},
+					modificarElemento() {
+						//this.$set(<array>,<key>,<novo valor>)
+						let key = parseFloat(index.value) - 1;
+						this.$set(this.comentarios, key, {
+							id: index.value,
+							comentario: novoComentario.value,
+						});
+					},
+				},
+			});
+		</script>
+	</body>
+</html>
